@@ -16,7 +16,7 @@ This project is a WXR radar server that spoofs the [RainViewer API](https://www.
 ## Deploymemt
 To deploy the server, install all the dependencies with pip:  
 
-`pip install httpx uvicorn fastapi numpy pillow`
+`pip install -r requirements.txt`
 
 Run the server with:
 `python main.py`
@@ -28,7 +28,7 @@ The server will start on port `8000` both on `localhost` and on the network.
 ## Endpoints
 With this API, the following endpoints are available
 
-`weather.json` - file containing timestamps information
+`/weather.json` - file containing timestamps information
 
 `/v2/radar/{timestamp}/{size}/{z}/{lat}/{lon}/{color}/{options}.png` - fetches and calculates radar tile based on precipitation rate
 
