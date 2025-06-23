@@ -11,6 +11,9 @@ from datetime import datetime, timedelta, timezone
 from dotenv import load_dotenv
 import httpx
 
+import socket
+import os
+
 from image_processing import process_image
 
 async def propogate_time():
@@ -24,6 +27,8 @@ async def lifespan(app: FastAPI):
 	yield
 
 app = FastAPI(lifespan=lifespan)
+production = os.getenv("PRODUCTION_MODE", "False")
+production_domain = os.getenv("PRODUCTION_DOMAIN", "localhost:8000")
 
 load_dotenv()
 
@@ -68,7 +73,7 @@ class Timestamps():
 		return {
 			"version": "2.0",
 			"generated": int(self.now.timestamp()),
-			"host": "http://localhost:8000",
+			"host": "http://localhost:8000" if production == "False" else f"https://{production_domain}",
 			"radar": {
 					"past": [{
 						"time": int(timestamp.timestamp()),
