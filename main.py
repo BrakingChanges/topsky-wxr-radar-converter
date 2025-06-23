@@ -1,5 +1,3 @@
-# http://maps.openweathermap.org/maps/2.0/weather/PAC0/{z}/{x}/{y}?appid
-#
 import math
 import uvicorn
 
@@ -168,6 +166,12 @@ async def weather_tile_proxy_lat_lon(timestamp: int, size: int, z: int, lat: flo
 
 	return Response(content=image, media_type="image/png")
 
+@app.head("/health")
+def health():
+	return {
+		"status": "OK",
+		"message": "API fully operational"
+	}
 
 
 if __name__ == '__main__':
