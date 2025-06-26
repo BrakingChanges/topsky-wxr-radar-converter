@@ -133,7 +133,7 @@ def rgb_to_precip_rate(rgb):
 
 def process_image(layer_images: dict[str, bytes], size: int, min_lat: float, min_lon: float, max_lat: float, max_lon: float) -> bytes:
 	# msg_fes_h60b processing
-	precip_image = Image.open(BytesIO((layer_images["precip_rate"]))).convert("RGBA")
+	precip_image = Image.open(BytesIO(layer_images["precip_rate"])).convert("RGBA")
 	precip_pixels = np.array(precip_image)
 	precip_rates = []
 
