@@ -201,6 +201,7 @@ async def weather_tile_proxy_lat_lon(timestamp: int, size: int, zoom: int, lat: 
 	return Response(content=image, media_type="image/png")
 
 @app.head("/health")
+@app.get("/health")
 def health():
 	return {
 		"status": "OK",
